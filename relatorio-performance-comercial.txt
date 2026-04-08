@@ -1,0 +1,84 @@
+#Relatório de Performance Comercial
+
+
+
+#🔹 Parte 1 — Dados iniciais
+
+lista_precos = [1500, 1000, 800, 2000]
+
+vendas_2023 = {"jan": 15000, "fev": 10000, "mar": 5000}
+vendas_2024 = {"jan": 16000, "fev": 12000, "mar": 5500}
+
+
+#🔹 Parte 2 — Faturamento + imposto
+
+total_produto = len(lista_precos)
+
+faturamento_total = sum(lista_precos)
+
+imposto_total = 0
+for preco in lista_precos:
+    if preco > 1000:
+        taxa_imposto = 0.15
+    else:
+        taxa_imposto = 0.10
+    imposto = taxa_imposto * preco
+    imposto_total = imposto_total + imposto
+
+
+#🔹 Parte 3 — Crescimento mensal
+
+crescimento_por_mes = ""
+total_crescimento = 0
+
+for mes in vendas_2024.keys():
+    crescimento = vendas_2024[mes] / vendas_2023[mes] - 1
+    total_crescimento = total_crescimento + crescimento
+    crescimento_por_mes = crescimento_por_mes + f"{mes.capitalize()}: {crescimento:.1%}\n"
+
+
+#🔹 Parte 4 — Média de crescimento
+
+media_crescimento = total_crescimento / len(vendas_2024)
+
+
+#🔹 Parte 5 — Classificação
+
+if media_crescimento >= 0.20:
+    classificacao = "Alta performance"
+elif media_crescimento >= 0.10:
+    classificacao = "Média performance"
+else:
+    classificacao = "Baixa performance"
+
+
+#🔹 Parte 6 — Saída final 
+
+#RELATÓRIO COMERCIAL
+
+#Total de produtos: X
+#Faturamento total: R$X.XXX,XX
+#Total de imposto: R$X.XXX,XX
+
+#Crescimento por mês:
+#Jan: XX.X%
+#Fev: XX.X%
+#Mar: XX.X%
+
+#Média de crescimento: XX.X%
+
+#Classificação: XXXXX
+
+print()
+print("RELATÓRIO COMERCIAL")
+print()
+print(f"Total de produtos: {total_produto}")
+print(f"Faturamento total: R${faturamento_total:,.2f}")
+print(f"Total de imposto: R${imposto_total:,.2f}")
+print()
+print("Crescimento por mês:")
+print(crescimento_por_mes)
+print(f"Média de crescimento: {media_crescimento:.1%}")
+print()
+print(f"Classificação: {classificacao}")
+print()
